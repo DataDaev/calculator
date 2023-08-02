@@ -28,9 +28,6 @@ function numberButtons() {
             display.textContent = calculator.nextNum;
         }
         displayLimit()
-        console.log(calculator.total);
-        console.log(calculator.nextNum);
-        console.log(typeof (calculator.total))
     }))
 }
 
@@ -38,9 +35,29 @@ function operatorButtons() {
     const calcOperators = document.querySelectorAll('[data-operator]');
     calcOperators.forEach(operators => operators.addEventListener('click', () => {
         calculator.operator = operators.dataset.operator;
+        if (calculator.nextNum != '') {
+            calculator.total = operate();
+            display.textContent = calculator.total;
+            displayLimit();
+        }
         calculator.nextNum = '';
-        console.log(calculator.operator);
     }))
+}
+
+function decimalButton() {
+    const decimal = document.getElementById('button-decimal');
+    decimal.addEventListener('click', () => {
+        if (!calculator.total.includes('.') && calculator.operator == null) {
+            if (calculator.total == '') calculator.total += '0'
+            calculator.total += '.';
+            display.textContent = calculator.total;
+        } else if (!calculator.nextNum.includes('.')) {
+            if (calculator.nextNum == '') calculator.nextNum += '0'
+            calculator.nextNum = calculator.nextNum + '.';
+            display.textContent = calculator.nextNum;
+        }
+        console.log(calculator.total)
+    })
 }
 
 function equalButton() {
@@ -60,26 +77,13 @@ function clearButton() {
         calculator.total = '';
         calculator.nextNum = '';
         calculator.operator = null;
-        display.textContent = '';
+        display.textContent = '0';
     })
 }
 
 function negativeButton() {
     const negative = document.getElementById('button-negative');
     negative.addEventListener('click', () => {
-        // const negativeCurrentNumber = "-" + calculator.total;
-        // if (display.textContent == '0' || display.textContent == '') {
-        //     display.textContent = calculator.total;
-        // } else if (calculator.total.includes('-')){
-        //     display.textContent = calculator.total;
-        // } else if (calculator.operator != null) {
-        //     const negativeNextNumber = '-' + calculator.nextNum;
-        //     calculator.nextNum = negativeNextNumber;
-        //     display.textContent = calculator.nextNum;
-        // } else {
-        //     calculator.total = negativeCurrentNumber;
-        //     display.textContent = calculator.total;
-        // }
         calculator.total = (calculator.total * -1).toString();
         display.textContent = calculator.total;
     })
@@ -88,32 +92,10 @@ function negativeButton() {
 function percentButton(){
     const percent = document.getElementById('button-percent');
     percent.addEventListener('click', () => {
-        // if (display.textContent.length == 1) {
-        //     const percentOneDigit = '00' + calculator.total;
-        //     const arrayTotal = percentOneDigit.split('');
-        //     arrayTotal.splice(1, 0, '.');
-        //     const newTotal = arrayTotal.join('');
-        //     calculator.total = newTotal;
-        //     display.textContent = calculator.total;
-        //     console.log(calculator.total);
-        // } else if (display.textContent.length == 2) {
-        //     const percentTwoDigit = '0' + calculator.total;
-        //     const arrayTotal = percentTwoDigit.split('');
-        //     arrayTotal.splice(1, 0, '.');
-        //     const newTotal = arrayTotal.join('');
-        //     calculator.total = newTotal;
-        //     display.textContent = calculator.total;
-        // } else {
-        //     const arrayTotal = calculator.total.split('');
-        //     arrayTotal.splice(-2, 0, '.');
-        //     const newTotal = arrayTotal.join('');
-        //     calculator.total = newTotal;
-        //     display.textContent = calculator.total;
-        //     console.log(calculator.total);
-        // }
         const percentage = (calculator.total/100).toString();
         calculator.total = percentage;
         display.textContent = calculator.total;
+        displayLimit();
     })
 }
 
@@ -122,15 +104,13 @@ function operate() {
     if (calculator.operator == '-') total = subtract();
     if (calculator.operator == '*') total = multiply();
     if (calculator.operator == '/') total = divide();
-    console.log(total);
-    console.log(typeof (total))
     return total
 }
 
 numberButtons()
 operatorButtons()
+decimalButton()
 equalButton()
 clearButton()
 negativeButton()
 percentButton()
-displayLimit()
