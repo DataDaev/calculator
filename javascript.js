@@ -12,7 +12,9 @@ const multiply = () => calculator.total * calculator.nextNum;
 const divide = () => calculator.total / calculator.nextNum;
 
 function displayLimit() {
-    if (display.textContent.length > 11) display.textContent.slice(0, 10);
+    if (display.textContent.length > 10) {
+        display.textContent = display.textContent.substring(0, 10);
+    }
 }
 
 function numberButtons() {
@@ -25,6 +27,7 @@ function numberButtons() {
             calculator.nextNum += numbers.dataset.number;
             display.textContent = calculator.nextNum;
         }
+        displayLimit()
         console.log(calculator.total);
         console.log(calculator.nextNum);
         console.log(typeof (calculator.total))
@@ -45,6 +48,7 @@ function equalButton() {
     equal.addEventListener('click', () => {
         calculator.total = operate();
         display.textContent = calculator.total;
+        displayLimit();
         calculator.nextNum = '';
         calculator.operator = null;
     })
@@ -118,7 +122,6 @@ function operate() {
     if (calculator.operator == '-') total = subtract();
     if (calculator.operator == '*') total = multiply();
     if (calculator.operator == '/') total = divide();
- 
     console.log(total);
     console.log(typeof (total))
     return total
