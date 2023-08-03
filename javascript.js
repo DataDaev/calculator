@@ -17,6 +17,14 @@ function displayLimit() {
     }
 }
 
+window.addEventListener('keydown', (event) => {
+    const numberKey = document.querySelector(`button[data-key="${event.keyCode}"]`)
+    if(!numberKey) return;
+    numberKey.click();
+    console.log(numberKey);
+    displayLimit();
+})
+
 function numberButtons() {
     const calcNumbers = document.querySelectorAll('[data-number]');
     calcNumbers.forEach(numbers => numbers.addEventListener('click', () => {
@@ -56,7 +64,6 @@ function decimalButton() {
             calculator.nextNum = calculator.nextNum + '.';
             display.textContent = calculator.nextNum;
         }
-        console.log(calculator.total)
     })
 }
 
