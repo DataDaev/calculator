@@ -35,8 +35,6 @@ function numberButtons() {
             display.textContent = calculator.nextNum;
         }
         displayLimit()
-        console.log(calculator.total);
-        console.log(calculator.nextNum);
     }))
 }
 
@@ -50,8 +48,6 @@ function operatorButtons() {
             displayLimit();
         }
         calculator.nextNum = '';
-        console.log(calculator.total);
-        console.log(calculator.nextNum);
     }))
 }
 
@@ -67,8 +63,6 @@ function decimalButton() {
             calculator.nextNum = calculator.nextNum + '.';
             display.textContent = calculator.nextNum;
         }
-        console.log(calculator.total);
-        console.log(calculator.nextNum);
     })
 }
 
@@ -80,8 +74,6 @@ function equalButton() {
         displayLimit();
         calculator.nextNum = '';
         calculator.operator = null;
-        console.log(calculator.total);
-        console.log(calculator.nextNum);
     })
 }
 
