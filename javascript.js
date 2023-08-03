@@ -21,7 +21,6 @@ window.addEventListener('keydown', (event) => {
     const numberKey = document.querySelector(`button[data-key="${event.keyCode}"]`)
     if(!numberKey) return;
     numberKey.click();
-    console.log(numberKey);
     displayLimit();
 })
 
@@ -36,6 +35,8 @@ function numberButtons() {
             display.textContent = calculator.nextNum;
         }
         displayLimit()
+        console.log(calculator.total);
+        console.log(calculator.nextNum);
     }))
 }
 
@@ -49,6 +50,8 @@ function operatorButtons() {
             displayLimit();
         }
         calculator.nextNum = '';
+        console.log(calculator.total);
+        console.log(calculator.nextNum);
     }))
 }
 
@@ -64,6 +67,8 @@ function decimalButton() {
             calculator.nextNum = calculator.nextNum + '.';
             display.textContent = calculator.nextNum;
         }
+        console.log(calculator.total);
+        console.log(calculator.nextNum);
     })
 }
 
@@ -75,6 +80,8 @@ function equalButton() {
         displayLimit();
         calculator.nextNum = '';
         calculator.operator = null;
+        console.log(calculator.total);
+        console.log(calculator.nextNum);
     })
 }
 
@@ -108,9 +115,9 @@ function percentButton(){
 
 function operate() {
     if (calculator.operator == '+') total = add().toString();
-    if (calculator.operator == '-') total = subtract();
-    if (calculator.operator == '*') total = multiply();
-    if (calculator.operator == '/') total = divide();
+    if (calculator.operator == '-') total = subtract().toString();;
+    if (calculator.operator == '*') total = multiply().toString();;
+    if (calculator.operator == '/') total = divide().toString();;
     return total
 }
 
