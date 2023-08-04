@@ -14,7 +14,7 @@ const divide = () => calculator.total / calculator.nextNum;
 function displayLimit() {
     if (display.textContent.length > 10) {
         calculator.total = calculator.total.substring(0,10);
-        display.textContent = calculator.total
+        display.textContent = calculator.total;
     }
 }
 
@@ -109,9 +109,9 @@ function percentButton(){
 
 function operate() {
     if (calculator.operator == '+') total = add().toString();
-    if (calculator.operator == '-') total = subtract().toString();;
-    if (calculator.operator == '*') total = multiply().toString();;
-    if (calculator.operator == '/') total = divide().toString();;
+    if (calculator.operator == '-') total = subtract().toString();
+    if (calculator.operator == '*') total = multiply().toString();
+    if (calculator.operator == '/') total = divide().toString();
     return total
 }
 
