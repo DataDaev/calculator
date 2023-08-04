@@ -65,7 +65,6 @@ function decimalButton() {
             display.textContent = calculator.nextNum;
         }
         displayLimit();
-        console.log(calculator.total)
     })
 }
 
