@@ -13,7 +13,8 @@ const divide = () => calculator.total / calculator.nextNum;
 
 function displayLimit() {
     if (display.textContent.length > 10) {
-        display.textContent = display.textContent.substring(0, 10);
+        calculator.total = calculator.total.substring(0,10);
+        display.textContent = calculator.total
     }
 }
 
@@ -55,14 +56,16 @@ function decimalButton() {
     const decimal = document.getElementById('button-decimal');
     decimal.addEventListener('click', () => {
         if (!calculator.total.includes('.') && calculator.operator == null) {
-            if (calculator.total == '') calculator.total += '0'
+            if (calculator.total == '') calculator.total += '0';
             calculator.total += '.';
             display.textContent = calculator.total;
         } else if (!calculator.nextNum.includes('.')) {
-            if (calculator.nextNum == '') calculator.nextNum += '0'
+            if (calculator.nextNum == '') calculator.nextNum += '0';
             calculator.nextNum = calculator.nextNum + '.';
             display.textContent = calculator.nextNum;
         }
+        displayLimit();
+        console.log(calculator.total)
     })
 }
 
@@ -113,10 +116,10 @@ function operate() {
     return total
 }
 
-numberButtons()
-operatorButtons()
-decimalButton()
-equalButton()
-clearButton()
-negativeButton()
-percentButton()
+numberButtons();
+operatorButtons();
+decimalButton();
+equalButton();
+clearButton();
+negativeButton();
+percentButton();
